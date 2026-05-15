@@ -763,16 +763,14 @@
     { src: "./img/sticker-oni.png",      blend: "normal",  minW: 90,  maxW: 125 },
   ];
 
-  // Fixed slots: {side, pos, rotate range} so stickers stay right-biased
-  // left slots are below the title text area (lower third)
+  // Slots — left side only at bottom (below title), right side anywhere
   const slots = [
-    { top: "-5%",   left: "2%",   rotate: [-7, -3] },   // left-top edge
-    { bottom: "-8%",left: "3%",   rotate: [-5, 0]  },   // left-bottom edge
-    { top: "-4%",   right: "22%", rotate: [-9, -5] },   // mid-top
-    { top: "-4%",   right: "4%",  rotate: [-6, 2]  },   // right-top
-    { top: "38%",   right: "-2%", rotate: [4, 10]  },   // right-mid
-    { bottom: "-8%",right: "26%", rotate: [-5, 2]  },   // bottom-mid
-    { bottom: "-8%",right: "4%",  rotate: [3, 8]   },   // right-bottom
+    { bottom: "-10%", left: "1%",   rotate: [-5, 0]  },   // left-bottom only (below logo)
+    { top: "-4%",     right: "22%", rotate: [-9, -5] },   // mid-top
+    { top: "-4%",     right: "4%",  rotate: [-6, 2]  },   // right-top
+    { top: "38%",     right: "-2%", rotate: [4, 10]  },   // right-mid
+    { bottom: "-10%", right: "26%", rotate: [-5, 2]  },   // bottom-mid
+    { bottom: "-10%", right: "4%",  rotate: [3, 8]   },   // right-bottom
   ];
 
   function rand(min, max) { return min + Math.random() * (max - min); }
