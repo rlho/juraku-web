@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Izakaya Juraku &mdash; Lower East Side, NYC</title>
+<meta name="description" content="Good food. Cold drinks. Loud friends. Late nights. Japanese izakaya in the LES." />
+<meta property="og:title" content="Izakaya Juraku &mdash; Lower East Side, NYC" />
+<meta property="og:description" content="Good food. Cold drinks. Loud friends. Late nights." />
+<meta property="og:image" content="./img/hero-title.png" />
+<link rel="icon" href="https://s3.amazonaws.com/toasttab/restaurants/restaurant-84007000000000000/restaurant_1632347647.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Permanent+Marker&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0a09;
+    --bg-2: #14100e;
+    --line: #2a211c;
+    --red: #d23a36;
+    --red-dark: #a82b27;
+    --cream: #f4ead5;
+    --cream-2: #e8dcc1;
+    --muted: #a89683;
+    --display: "Bangers", "Impact", system-ui, sans-serif;
+    --body: "Inter", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--cream);
+    font-family: var(--body);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; height: auto; }
+
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 0 20px; }
+
+  /* ---------- Header ---------- */
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(13, 10, 9, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .header-inner {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 14px 20px;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .brand img {
+    height: 52px;
+    width: auto;
+    display: block;
+  }
+  @media (max-width: 600px) { .brand img { height: 42px; } }
+  .nav {
+    display: flex;
+    gap: 22px;
+    margin-left: 12px;
+    flex: 1;
+  }
+  .nav a {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--cream);
+    padding: 8px 0;
+    border-bottom: 2px solid transparent;
+  }
+  .nav a:hover { border-color: var(--red); }
+  .header-right { display: flex; align-items: center; gap: 16px; }
+  .loc {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .loc::before { content: "📍 "; }
+  .btn-pill {
+    display: inline-block;
+    background: var(--red);
+    color: #fff;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 10px 16px;
+    border-radius: 4px;
+    border: 1px solid #f1a09e;
+    transition: background 0.15s;
+  }
+  .btn-pill:hover { background: var(--red-dark); }
+
+  .nav-toggle {
+    display: none;
+    background: transparent;
+    border: 0;
+    color: var(--cream);
+    font-size: 22px;
+    cursor: pointer;
+    padding: 6px 10px;
+  }
+
+  @media (max-width: 900px) {
+    .header-inner { flex-wrap: wrap; gap: 10px; padding: 10px 14px; }
+    .nav-toggle { display: block; margin-left: auto; order: 2; }
+    .nav {
+      order: 10;
+      flex-basis: 100%;
+      flex-direction: column;
+      gap: 0;
+      margin-left: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.25s ease;
+    }
+    .nav.open { max-height: 400px; }
+    .nav a { padding: 12px 0; border-bottom: 1px solid var(--line); }
+    .loc { display: none; }
+    .header-right { gap: 10px; order: 1; margin-left: auto; }
+    .btn-pill { font-size: 11px; padding: 8px 12px; letter-spacing: 1px; }
+  }
+  @media (max-width: 420px) {
+    .btn-pill { font-size: 10px; padding: 7px 10px; letter-spacing: 0.5px; }
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(180deg, #16100e 0%, #0d0a09 100%);
+    border-bottom: 1px solid var(--line);
+    padding: 56px 0 64px;
+  }
+  /* Right-side storefront photo */
+  .hero-bg-right {
+    position: absolute;
+    inset: 0 0 0 45%;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .hero-bg-right img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    opacity: 0.92;
+  }
+  /* Thin fade on the left edge only so it blends into the dark left side */
+  .hero-bg-right::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, #0d0a09 0%, transparent 25%);
+    z-index: 1;
+  }
+  @media (max-width: 900px) {
+    .hero-bg-right { inset: 55% 0 0 0; }
+    .hero-bg-right::before {
+      background: linear-gradient(180deg, #0d0a09 0%, rgba(13,10,9,0.3) 40%, transparent 100%);
+    }
+  }
+  .hero-inner {
+    position: relative;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+
+  /* Stickers — decorative, non-interactive */
+  .sticker {
+    position: absolute;
+    pointer-events: none;
+    user-select: none;
+    z-index: 3;
+    animation: float 5s ease-in-out infinite;
+  }
+  /* Transparent-bg stickers (yokai) */
+  .sticker.has-transparent {
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));
+  }
+  /* Black-bg stickers (Samurai / Momochan) — screen mode kills the black bg */
+  .sticker.has-black-bg {
+    mix-blend-mode: screen;
+  }
+
+  /* Positions — all right-biased so they don't cover the title */
+  .sticker.kappa    { top: -8px;    right: 5%;  width: 100px; transform: rotate(-6deg);  animation-delay: 0s;   }
+  .sticker.tanuki   { bottom: -32px; right: 28%; width: 130px; transform: rotate(-4deg);  animation-delay: 0.6s; }
+  .sticker.oni      { top: 44%;     right: -24px; width: 120px; transform: rotate(8deg);  animation-delay: 1.2s; }
+  .sticker.sakebomb { bottom: 12%;  right: 3%;  width: 105px; transform: rotate(5deg);   animation-delay: 0.3s; }
+  .sticker.daruma   { bottom: -20px; left: 2%;  width: 120px; transform: rotate(-5deg);  animation-delay: 0.7s; }
+  /* New characters */
+  .sticker.momochan { bottom: -28px; right: 14%; width: 160px; transform: rotate(3deg);   animation-delay: 0.9s; }
+  .sticker.samurai  { top: -4px;    right: 23%; width: 100px; transform: rotate(-8deg);  animation-delay: 0.4s; }
+  .sticker.reddemon { top: 30%;     right: -18px; width: 115px; transform: rotate(6deg);  animation-delay: 1.5s; }
+
+  @keyframes float {
+    0%, 100% { translate: 0 0; }
+    50%      { translate: 0 -8px; }
+  }
+
+  .hero-inner > div, .hero-inner > aside { position: relative; z-index: 4; }
+
+  @media (max-width: 900px) {
+    .sticker.kappa    { width: 76px;  right: 4%;  top: -4px; }
+    .sticker.tanuki   { width: 96px;  right: 34%; bottom: -18px; }
+    .sticker.oni      { display: none; }
+    .sticker.sakebomb { width: 80px;  right: 2%;  bottom: -10px; }
+    .sticker.momochan { width: 120px; right: 10%; bottom: -20px; }
+    .sticker.samurai  { width: 76px;  right: 26%; }
+    .sticker.reddemon { display: none; }
+  }
+  @media (max-width: 520px) {
+    .sticker.tanuki   { width: 74px; right: 38%; }
+    .sticker.sakebomb { width: 64px; }
+    .sticker.momochan { width: 90px; right: 6%; }
+    .sticker.samurai  { width: 62px; right: 28%; }
+    .sticker.kappa    { width: 58px; }
+  }
+  .hero-title {
+    margin: 0 0 24px;
+    line-height: 0.85;
+    position: relative;
+  }
+  .hero-title .izakaya {
+    display: block;
+    font-family: var(--display);
+    font-size: clamp(40px, 6.5vw, 84px);
+    letter-spacing: 4px;
+    color: var(--cream);
+    text-shadow:
+      2px 2px 0 rgba(0,0,0,0.6),
+      0 0 24px rgba(244,234,213,0.15);
+    transform: rotate(-2deg);
+  }
+  .hero-title .juraku {
+    display: block;
+    font-family: var(--display);
+    font-size: clamp(64px, 11vw, 148px);
+    letter-spacing: 6px;
+    color: var(--red);
+    text-shadow:
+      3px 3px 0 rgba(0,0,0,0.7),
+      0 0 32px rgba(210,58,54,0.35);
+    transform: rotate(-1deg);
+    margin-top: 8px;
+  }
+  .hero-title .kanpai {
+    position: absolute;
+    top: 4px;
+    left: clamp(280px, 36vw, 460px);
+    background: var(--cream);
+    color: #14100e;
+    font-family: var(--display);
+    font-size: clamp(11px, 1.2vw, 14px);
+    padding: 6px 10px;
+    border-radius: 16px;
+    transform: rotate(-4deg);
+    letter-spacing: 1px;
+    white-space: nowrap;
+    line-height: 1.2;
+  }
+  .hero-title .kanpai::after {
+    content: "";
+    position: absolute;
+    left: 16px; bottom: -7px;
+    width: 0; height: 0;
+    border: 7px solid transparent;
+    border-top-color: var(--cream);
+    border-bottom: 0;
+  }
+  .hero-title .kanpai b { color: var(--red); font-weight: 700; display: block; font-size: 0.9em; }
+  .hero-tag {
+    font-family: var(--display);
+    font-size: clamp(18px, 2.2vw, 28px);
+    letter-spacing: 2px;
+    color: var(--cream);
+    margin: 0 0 32px;
+    line-height: 1.2;
+  }
+  .hero-tag span { display: block; }
+
+  /* CTA band */
+  .cta-band { padding: 48px 0; }
+
+  /* CTA buttons */
+  .cta {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+  }
+  .btn {
+    flex: 0 1 auto;
+    min-width: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: var(--display);
+    font-size: 15px;
+    letter-spacing: 1.8px;
+    padding: 10px 14px;
+    border-radius: 6px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    white-space: nowrap;
+  }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,0.5); }
+  .btn .ico { font-size: 1.1em; line-height: 1; }
+  .btn .arr { margin-left: 4px; font-weight: 700; }
+  .btn .lbl { overflow: hidden; text-overflow: ellipsis; }
+
+  @media (max-width: 1100px) {
+    .btn { font-size: 13px; letter-spacing: 1.4px; padding: 9px 10px; gap: 6px; }
+  }
+  @media (max-width: 700px) {
+    .cta { flex-wrap: wrap; }
+    .btn { flex: 1 1 100%; padding: 11px 14px; font-size: 15px; }
+  }
+
+  .btn-red {
+    background: var(--red);
+    color: var(--cream);
+    border-color: #ea7c7a;
+  }
+  .btn-red:hover { background: var(--red-dark); }
+
+  .btn-cream {
+    background: var(--cream);
+    color: #14100e;
+    border-color: #c8b88f;
+  }
+  .btn-cream:hover { background: var(--cream-2); }
+
+  .btn-dark {
+    background: #1a1410;
+    color: var(--cream);
+    border-color: #4a3c33;
+  }
+  .btn-dark:hover { background: #261d16; }
+
+  .no-fees {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--display);
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    background: var(--cream);
+    color: #14100e;
+    padding: 6px 12px;
+    border-radius: 30px;
+    transform: rotate(-6deg);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    white-space: nowrap;
+  }
+
+  /* Right column: OPEN LATE */
+  .open-late-wrap {
+    display: flex;
+    justify-content: flex-end;
+  }
+  .open-late {
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid var(--red);
+    border-radius: 8px;
+    padding: 18px 20px;
+    color: var(--cream);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+    width: fit-content;
+    min-width: 180px;
+  }
+  .open-late h3 {
+    font-family: var(--display);
+    font-size: 28px;
+    letter-spacing: 3px;
+    color: var(--red);
+    margin: 0 0 14px;
+  }
+  .hours { list-style: none; padding: 0; margin: 0; }
+  .hours li {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 8px 0;
+    border-top: 1px dashed rgba(244,234,213,0.18);
+    font-size: 14px;
+    letter-spacing: 1.5px;
+  }
+  .hours li:first-child { border-top: 0; }
+  .hours .day {
+    font-family: var(--display);
+    font-size: 18px;
+    letter-spacing: 2px;
+    color: var(--cream);
+  }
+  .hours .time { color: var(--cream-2); font-weight: 600; }
+
+  @media (max-width: 900px) {
+    .hero { padding: 36px 0 44px; }
+    .hero-inner { grid-template-columns: 1fr; gap: 28px; }
+    .open-late { max-width: 100%; }
+  }
+  @media (max-width: 600px) {
+    .hero-title .izakaya { letter-spacing: 2px; }
+    .hero-title .juraku { letter-spacing: 3px; }
+    .hero-title .kanpai { left: auto; right: 4%; top: 0; font-size: 11px; }
+    .hero-tag { font-size: 16px; letter-spacing: 1.5px; margin-bottom: 24px; }
+    .open-late { padding: 18px 20px; }
+    .open-late h3 { font-size: 22px; }
+  }
+  @media (max-width: 520px) {
+    .btn { padding: 12px 18px; gap: 10px; font-size: 14px; }
+    .no-fees { font-size: 12px; padding: 6px 12px; }
+    .hours li { font-size: 13px; }
+    .hours .day { font-size: 16px; }
+  }
+  @media (max-width: 380px) {
+    .hero-title .izakaya { letter-spacing: 1px; }
+    .hero-title .juraku { letter-spacing: 2px; }
+  }
+
+  /* ---------- Section heading ---------- */
+  .section-title {
+    font-family: var(--display);
+    font-size: clamp(28px, 4vw, 44px);
+    letter-spacing: 2px;
+    color: var(--cream);
+    margin: 0 0 6px;
+  }
+  .section-sub {
+    color: var(--muted);
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin: 0 0 24px;
+  }
+
+  /* ---------- Featured strip ---------- */
+  .featured { padding: 64px 0; }
+  .cards-strip {
+    width: 100%;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #000;
+  }
+  .cards-strip img { width: 100%; height: auto; display: block; }
+  @media (max-width: 900px) {
+    .featured { padding: 44px 0; }
+    .cards-strip {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 0 -20px;
+      border-radius: 0;
+    }
+    .cards-strip img { width: auto; max-width: none; height: 220px; }
+  }
+
+  /* ---------- Info band ---------- */
+  .info {
+    background: var(--bg-2);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 56px 0;
+  }
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1.2fr 0.8fr;
+    gap: 36px;
+  }
+  .info h3 {
+    font-family: var(--display);
+    font-size: 22px;
+    letter-spacing: 2px;
+    margin: 0 0 12px;
+    color: var(--cream);
+  }
+  .info p { color: var(--muted); font-size: 14px; margin: 0 0 16px; }
+  .info .addr { color: var(--cream); font-size: 14px; margin: 0 0 6px; }
+  .info .addr a { color: var(--cream); border-bottom: 1px dotted var(--muted); }
+  .info .addr a:hover { color: var(--red); border-color: var(--red); }
+
+  .directions {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: transparent;
+    border: 1px solid var(--cream);
+    color: var(--cream);
+    font-family: var(--display);
+    font-size: 14px;
+    letter-spacing: 2px;
+    padding: 8px 14px;
+    border-radius: 4px;
+    margin-top: 8px;
+  }
+  .directions:hover { background: var(--cream); color: #000; }
+
+  .socials { display: flex; gap: 12px; margin-top: 8px; }
+  .socials a {
+    width: 40px; height: 40px;
+    display: inline-flex; align-items: center; justify-content: center;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    color: var(--cream);
+    transition: background 0.15s, transform 0.15s, border-color 0.15s;
+  }
+  .socials a:hover { background: var(--red); border-color: var(--red); transform: translateY(-2px); }
+  .socials svg { width: 18px; height: 18px; fill: currentColor; }
+
+  .signup-form { display: flex; gap: 8px; margin-top: 12px; }
+  .signup-form input {
+    flex: 1;
+    background: rgba(0,0,0,0.4);
+    border: 1px solid var(--line);
+    color: var(--cream);
+    font-size: 14px;
+    padding: 10px 12px;
+    border-radius: 4px;
+    outline: none;
+  }
+  .signup-form input:focus { border-color: var(--red); }
+  .signup-form button {
+    background: var(--red);
+    color: #fff;
+    border: 0;
+    font-family: var(--display);
+    font-size: 15px;
+    letter-spacing: 2px;
+    padding: 0 22px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .signup-form button:hover { background: var(--red-dark); }
+
+  .brand-mark {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .brand-mark img {
+    width: 140px;
+    height: auto;
+    display: block;
+  }
+  .brand-mark ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    color: var(--muted);
+    font-family: var(--display);
+    font-size: 14px;
+    letter-spacing: 2.5px;
+  }
+  .brand-mark li { padding: 3px 0; color: var(--cream); }
+
+  @media (max-width: 1000px) { .info-grid { grid-template-columns: 1fr 1fr; gap: 28px; } }
+  @media (max-width: 600px)  {
+    .info { padding: 40px 0; }
+    .info-grid { grid-template-columns: 1fr; gap: 32px; }
+  }
+
+  /* ---------- Footer ---------- */
+  .site-footer {
+    padding: 22px 0 32px;
+    color: var(--muted);
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  .footer-meta a { color: var(--muted); }
+  .footer-meta a:hover { color: var(--cream); }
+  .footer-legal a { margin-left: 18px; color: var(--muted); }
+  .footer-legal a:hover { color: var(--cream); }
+  .dot { color: var(--line); margin: 0 8px; }
+  @media (max-width: 600px) {
+    .footer-inner { flex-direction: column; align-items: flex-start; }
+    .footer-legal a:first-child { margin-left: 0; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="#top" class="brand" aria-label="Izakaya Juraku home"><img src="./img/daruma.png" alt="Izakaya Juraku" style="filter:brightness(1.4) saturate(0.8);" /></a>
+    <button class="nav-toggle" aria-label="Toggle menu" onclick="document.getElementById('nav').classList.toggle('open')">☰</button>
+    <nav id="nav" class="nav" aria-label="Primary">
+      <a href="#menu">Menu</a>
+      <a href="#drinks">Drinks</a>
+      <a href="#events">Events</a>
+      <a href="#about">About</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="header-right">
+      <a class="loc" href="https://www.google.com/maps/place/121+Rivington+St,+New+York,+NY+10002" target="_blank" rel="noopener">Lower East Side, NYC</a>
+      <a class="btn-pill" href="https://resy.com/cities/ny/izakaya-juraku" target="_blank" rel="noopener">Reserve a Table</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="hero-bg-right" aria-hidden="true">
+    <img src="./img/backend.png" alt="" />
+  </div>
+  <div class="hero-inner">
+    <!-- Stickers injected by JS (random on each load) -->
+    <div>
+      <h1 class="hero-title" aria-label="Izakaya Juraku">
+        <span class="izakaya">Izakaya</span>
+        <span class="juraku">JURAKU</span>
+        <span class="kanpai">乾杯!<b>KANPAI!</b></span>
+      </h1>
+      <p class="hero-tag">
+        <span>Good food. Cold drinks.</span>
+        <span>Loud friends. Late nights.</span>
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap cta">
+    <a class="btn btn-red" href="https://resy.com/cities/ny/izakaya-juraku" target="_blank" rel="noopener">
+      <span class="ico">🏮</span><span>Reserve a Table</span><span class="arr">→</span>
+    </a>
+    <a class="btn btn-cream" href="https://order.toasttab.com/order-and-pay/juraku121/welcome" target="_blank" rel="noopener">
+      <span class="ico">🍶</span><span>View Menu</span><span class="arr">→</span>
+    </a>
+    <a class="btn btn-dark" href="https://order.toasttab.com/order-and-pay/juraku121/welcome" target="_blank" rel="noopener">
+      <span class="ico">🛍️</span><span>Order Direct</span><span class="arr">→</span>
+    </a>
+    <span class="no-fees">No fees!</span>
+  </div>
+</section>
+
+<section class="featured wrap" id="menu">
+  <h2 class="section-title">Crowd Favorites</h2>
+  <p class="section-sub">What everyone&rsquo;s ordering tonight</p>
+  <div class="cards-strip">
+    <img src="./img/cards-strip.jpg" alt="Karaage, Wasabi Shake Shake Fries, Brown Butter Ramen, Matcha Sake Bomb, Craft Beer, Events" />
+  </div>
+</section>
+
+<section class="info" id="contact">
+  <div class="wrap info-grid">
+
+    <div>
+      <h3>Located in the heart of LES</h3>
+      <p>Neon lights, low ceilings, and big energy. Juraku is your go-to spot for izakaya vibes done right.</p>
+      <p class="addr">
+        <a href="https://www.google.com/maps/place/121+Rivington+St,+New+York,+NY+10002" target="_blank" rel="noopener">121 Rivington St, New York, NY 10002</a>
+      </p>
+      <p class="addr"><a href="tel:+12129791151">(212) 979-1151</a></p>
+      <a class="directions" href="https://www.google.com/maps/dir/?api=1&destination=121+Rivington+St,+New+York,+NY+10002" target="_blank" rel="noopener">📍 Get Directions →</a>
+    </div>
+
+    <div>
+      <h3>Follow for good times</h3>
+      <p>New drops, late-night specials, events, and more.</p>
+      <div class="socials" aria-label="Social media">
+        <a href="https://www.instagram.com/izakayajuraku/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.25.07 1.64.07 4.84s0 3.6-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.25.06-1.64.07-4.85.07-3.2 0-3.6 0-4.85-.07-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23C2.21 15.6 2.2 15.2 2.2 12s0-3.6.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.4 2.21 8.8 2.2 12 2.2zm0 1.8c-3.15 0-3.52.01-4.76.07-1.07.05-1.65.23-2.04.38-.51.2-.88.44-1.26.82-.38.38-.62.75-.82 1.26-.15.39-.33.97-.38 2.04C2.68 8.48 2.67 8.85 2.67 12s.01 3.52.07 4.76c.05 1.07.23 1.65.38 2.04.2.51.44.88.82 1.26.38.38.75.62 1.26.82.39.15.97.33 2.04.38 1.24.06 1.61.07 4.76.07s3.52-.01 4.76-.07c1.07-.05 1.65-.23 2.04-.38.51-.2.88-.44 1.26-.82.38-.38.62-.75.82-1.26.15-.39.33-.97.38-2.04.06-1.24.07-1.61.07-4.76s-.01-3.52-.07-4.76c-.05-1.07-.23-1.65-.38-2.04-.2-.51-.44-.88-.82-1.26-.38-.38-.75-.62-1.26-.82-.39-.15-.97-.33-2.04-.38C15.52 4.01 15.15 4 12 4zm0 3.3a4.7 4.7 0 1 1 0 9.4 4.7 4.7 0 0 1 0-9.4zm0 1.8a2.9 2.9 0 1 0 0 5.8 2.9 2.9 0 0 0 0-5.8zm5.95-2.05a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0z"/></svg>
+        </a>
+        <a href="https://www.tiktok.com/@izakayajuraku" target="_blank" rel="noopener" aria-label="TikTok">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 8.6a8.4 8.4 0 0 1-4.9-1.6v7.3a6.2 6.2 0 1 1-6.2-6.2c.3 0 .6 0 .9.1v3.1a3.1 3.1 0 1 0 2.2 3V2h3a4.7 4.7 0 0 0 5 4.4z"/></svg>
+        </a>
+        <a href="https://www.facebook.com/IzakayaJuraku/" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 22v-8h2.7l.4-3.2h-3.1V8.7c0-.93.26-1.56 1.6-1.56h1.7V4.2c-.3 0-1.3-.13-2.4-.13-2.4 0-4 1.46-4 4.13v2.3H8v3.2h2.4V22h3.1z"/></svg>
+        </a>
+        <a href="https://www.yelp.com/biz/izakaya-juraku-new-york" target="_blank" rel="noopener" aria-label="Yelp">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.4 14.5l4 2.4c.7.4.5 1.5-.3 1.8l-3.6 1.3c-.7.3-1.4-.3-1.3-1l.3-3.8c.1-.7.9-1 1.4-.7zm-.4-3l1-7c.1-.9-.8-1.5-1.7-1.2L8.8 4.7c-.7.2-1 1.1-.4 1.6l4.6 5.4c.6.7 1.7.4 2-.4zm-2.4 3.2l-3 2.6c-.6.5-.5 1.5.2 1.8l3.4 1.7c.7.4 1.6-.2 1.4-1l-1.1-4.3c-.1-.7-.9-1-1.5-.5zm-1.5-2.6L3.7 9.6c-.7-.2-1.4.5-1.2 1.2l1.1 4.3c.2.7 1 1 1.5.5l4.7-3.9c.5-.4.4-1.4-.4-1.6z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div id="newsletter">
+      <h3>Be part of the crew</h3>
+      <p>Get the inside scoop on specials, events &amp; secret menu drops.</p>
+      <form class="signup-form" onsubmit="event.preventDefault(); const e=this.email.value.trim(); if(e){ window.location.href='mailto:hello@izakayajuraku.com?subject=Sign%20me%20up&body=' + encodeURIComponent(e); }">
+        <input type="email" name="email" required placeholder="Email address" aria-label="Email address" />
+        <button type="submit">Join</button>
+      </form>
+    </div>
+
+    <div class="brand-mark" id="about">
+      <img src="./img/daruma-light.png" alt="Izakaya Juraku" />
+      <ul>
+        <li>Good food</li>
+        <li>Good people</li>
+        <li>Good times</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-meta">
+      © 2026 Izakaya Juraku
+      <span class="dot">·</span>
+      <a href="https://www.google.com/maps/place/121+Rivington+St,+New+York,+NY+10002" target="_blank" rel="noopener">121 Rivington St, New York, NY 10002</a>
+      <span class="dot">·</span>
+      <a href="tel:+12129791151">(212) 979-1151</a>
+    </div>
+    <div class="footer-legal">
+      <a href="#privacy">Privacy Policy</a>
+      <a href="#terms">Terms &amp; Conditions</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  // All available stickers with their blend mode
+  const pool = [
+    { src: "./img/sticker-kappa.png",    blend: "normal",  minW: 80,  maxW: 115 },
+    { src: "./img/sticker-tanuki.png",   blend: "normal",  minW: 100, maxW: 145 },
+    { src: "./img/sticker-sakebomb.png", blend: "normal",  minW: 85,  maxW: 120 },
+    { src: "./img/daruma.png",           blend: "normal",  minW: 90,  maxW: 120 },
+    { src: "./img/sticker-momochan.png", blend: "screen",  minW: 120, maxW: 170 },
+    { src: "./img/sticker-samurai.png",  blend: "screen",  minW: 80,  maxW: 115 },
+    { src: "./img/sticker-reddemon.png", blend: "screen",  minW: 85,  maxW: 120 },
+    { src: "./img/sticker-oni.png",      blend: "normal",  minW: 90,  maxW: 125 },
+  ];
+
+  // Fixed slots: {side, pos, rotate range} so stickers stay right-biased
+  // left slots are below the title text area (lower third)
+  const slots = [
+    { top: "-5%",   left: "2%",   rotate: [-7, -3] },   // left-top edge
+    { bottom: "-8%",left: "3%",   rotate: [-5, 0]  },   // left-bottom edge
+    { top: "-4%",   right: "22%", rotate: [-9, -5] },   // mid-top
+    { top: "-4%",   right: "4%",  rotate: [-6, 2]  },   // right-top
+    { top: "38%",   right: "-2%", rotate: [4, 10]  },   // right-mid
+    { bottom: "-8%",right: "26%", rotate: [-5, 2]  },   // bottom-mid
+    { bottom: "-8%",right: "4%",  rotate: [3, 8]   },   // right-bottom
+  ];
+
+  function rand(min, max) { return min + Math.random() * (max - min); }
+  function pick(arr, n) {
+    const copy = [...arr].sort(() => Math.random() - 0.5);
+    return copy.slice(0, n);
+  }
+
+  const container = document.querySelector(".hero-inner");
+  if (!container) return;
+
+  const isMobile = window.innerWidth < 700;
+  const count = isMobile ? 3 : 5;
+
+  const chosen = pick(pool, count);
+  const usedSlots = pick(slots, count);
+
+  chosen.forEach((s, i) => {
+    const slot = usedSlots[i];
+    const w = Math.round(rand(s.minW, s.maxW)) + "px";
+    const rot = rand(slot.rotate[0], slot.rotate[1]).toFixed(1) + "deg";
+    const delay = (i * 0.4).toFixed(1) + "s";
+
+    const img = document.createElement("img");
+    img.src = s.src;
+    img.alt = "";
+    img.setAttribute("aria-hidden", "true");
+    img.className = "sticker has-transparent";
+
+    Object.assign(img.style, {
+      width: w,
+      transform: `rotate(${rot})`,
+      animationDelay: delay,
+      mixBlendMode: s.blend,
+      filter: s.blend === "normal" ? "drop-shadow(0 4px 10px rgba(0,0,0,0.5))" : "none",
+      top:    slot.top    ?? "auto",
+      bottom: slot.bottom ?? "auto",
+      left:   slot.left   ?? "auto",
+      right:  slot.right  ?? "auto",
+    });
+
+    container.appendChild(img);
+  });
+})();
+</script>
+</body>
+</html>
