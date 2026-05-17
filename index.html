@@ -581,18 +581,6 @@
   }
   .brand-mark li { padding: 3px 0; color: var(--cream); }
 
-  /* ---------- Instagram feed ---------- */
-  .ig-section {
-    padding: 64px 0;
-    border-bottom: 1px solid var(--line);
-  }
-  .ig-section .section-sub a {
-    color: var(--red);
-    border-bottom: 1px dotted var(--red);
-  }
-  .ig-section .section-sub a:hover { opacity: 0.75; }
-  /* Hide on mobile — Behold widget is not optimized for small screens */
-  @media (max-width: 900px) { .ig-section { display: none; } }
 
   @media (max-width: 1000px) { .info-grid { grid-template-columns: 1fr 1fr; gap: 28px; } }
   @media (max-width: 600px)  {
@@ -693,16 +681,6 @@
   </div>
 </section>
 
-<!-- ===== INSTAGRAM FEED (desktop only) ===== -->
-<section class="ig-section">
-  <div class="wrap">
-    <h2 class="section-title">Follow for Good Times</h2>
-    <p class="section-sub"><a href="https://www.instagram.com/izakayajuraku/" target="_blank" rel="noopener">@izakayajuraku</a></p>
-    <!-- Behold.so widget — replace BEHOLD_WIDGET_ID with your actual ID from behold.so -->
-    <div id="behold-widget-BEHOLD_WIDGET_ID"></div>
-    <script type="module" src="https://w.behold.so/widget.js"></script>
-  </div>
-</section>
 
 <section class="info" id="contact">
   <div class="wrap info-grid">
