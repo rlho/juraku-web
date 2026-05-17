@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Media &amp; Press &mdash; Izakaya Juraku</title>
+<meta name="description" content="Press, creator collabs, and community love for Izakaya Juraku — NYC's Tokyo-inspired izakaya on the Lower East Side." />
+<link rel="icon" href="https://s3.amazonaws.com/toasttab/restaurants/restaurant-84007000000000000/restaurant_1632347647.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0a09; --bg-2: #14100e; --line: #2a211c;
+    --red: #d23a36; --red-dark: #a82b27;
+    --cream: #f4ead5; --cream-2: #e8dcc1; --muted: #a89683;
+    --display: "Bangers", "Impact", system-ui, sans-serif;
+    --body: "Inter", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--cream); font-family: var(--body); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; }
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 0 20px; }
+
+  /* Header */
+  .site-header { position: sticky; top: 0; z-index: 50; background: rgba(13,10,9,0.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+  .header-inner { display: flex; align-items: center; gap: 20px; padding: 14px 20px; max-width: 1280px; margin: 0 auto; }
+  .brand { display: inline-flex; align-items: center; flex-shrink: 0; }
+  .brand img { height: 52px; width: auto; }
+  .nav { display: flex; gap: 22px; margin-left: 12px; flex: 1; }
+  .nav a { font-size: 13px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--cream); padding: 8px 0; border-bottom: 2px solid transparent; }
+  .nav a:hover, .nav a.active { border-color: var(--red); }
+  .header-right { display: flex; align-items: center; gap: 16px; }
+  .btn-pill { display: inline-block; background: var(--red); color: #fff; font-weight: 700; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; padding: 10px 16px; border-radius: 4px; border: 1px solid #f1a09e; }
+  .btn-pill:hover { background: var(--red-dark); }
+  .nav-toggle { display: none; background: transparent; border: 0; color: var(--cream); font-size: 22px; cursor: pointer; padding: 6px 10px; }
+  @media (max-width: 900px) {
+    .header-inner { flex-wrap: wrap; gap: 10px; padding: 10px 14px; }
+    .nav-toggle { display: block; margin-left: auto; order: 2; }
+    .nav { order: 10; flex-basis: 100%; flex-direction: column; gap: 0; margin-left: 0; max-height: 0; overflow: hidden; transition: max-height 0.25s ease; }
+    .nav.open { max-height: 400px; }
+    .nav a { padding: 12px 0; border-bottom: 1px solid var(--line); }
+    .header-right { gap: 10px; order: 1; margin-left: auto; }
+  }
+
+  /* Page hero */
+  .page-hero {
+    background: linear-gradient(135deg, #1a100d 0%, #0d0a09 60%),
+      radial-gradient(ellipse at 80% 50%, rgba(210,58,54,0.15), transparent 60%);
+    padding: 80px 0 64px;
+    border-bottom: 1px solid var(--line);
+  }
+  .page-hero h1 { font-family: var(--display); font-size: clamp(48px, 7vw, 96px); letter-spacing: 3px; color: var(--cream); margin: 0 0 16px; line-height: 1; }
+  .page-hero p { font-size: 18px; color: var(--muted); max-width: 560px; margin: 0; }
+
+  /* Content */
+  .media-body { padding: 80px 0; }
+
+  /* Press quote */
+  .press-section { margin-bottom: 72px; }
+  .section-label { font-family: var(--display); font-size: 13px; letter-spacing: 3px; color: var(--red); text-transform: uppercase; margin: 0 0 24px; }
+  .press-card {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--red);
+    border-radius: 0 8px 8px 0;
+    padding: 32px 36px;
+    max-width: 760px;
+  }
+  .press-quote {
+    font-size: clamp(18px, 2.5vw, 22px);
+    font-style: italic;
+    color: var(--cream);
+    margin: 0 0 20px;
+    line-height: 1.5;
+  }
+  .press-source { display: flex; align-items: center; gap: 12px; }
+  .press-source-name { font-family: var(--display); font-size: 16px; letter-spacing: 2px; color: var(--red); text-transform: uppercase; }
+  .press-source-link { font-size: 13px; color: var(--muted); border: 1px solid var(--line); border-radius: 4px; padding: 4px 10px; }
+  .press-source-link:hover { border-color: var(--cream); color: var(--cream); }
+
+  /* Creator collab */
+  .collab-section { margin-bottom: 72px; }
+  .collab-intro { font-size: 16px; color: var(--muted); max-width: 640px; margin: 0 0 40px; }
+
+  .collab-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 40px; }
+  .collab-card { background: var(--bg-2); border: 1px solid var(--line); border-radius: 8px; padding: 28px 24px; }
+  .collab-card-icon { font-size: 28px; margin-bottom: 12px; }
+  .collab-card h3 { font-family: var(--display); font-size: 20px; letter-spacing: 2px; color: var(--cream); margin: 0 0 10px; }
+  .collab-card p { color: var(--muted); font-size: 14px; margin: 0; line-height: 1.6; }
+
+  .collab-note {
+    background: rgba(210,58,54,0.06);
+    border: 1px solid rgba(210,58,54,0.2);
+    border-radius: 8px;
+    padding: 20px 24px;
+    font-size: 14px;
+    color: var(--muted);
+    max-width: 640px;
+  }
+  .collab-note strong { color: var(--cream); }
+
+  /* CTA / Contact */
+  .contact-section { }
+  .contact-lead { font-family: var(--display); font-size: clamp(24px, 3.5vw, 40px); letter-spacing: 2px; color: var(--cream); margin: 0 0 16px; line-height: 1.1; }
+  .contact-sub { font-size: 16px; color: var(--muted); margin: 0 0 32px; }
+  .contact-methods { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-outline { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--cream); color: var(--cream); font-family: var(--display); font-size: 16px; letter-spacing: 2px; padding: 12px 24px; border-radius: 6px; }
+  .btn-outline:hover { background: var(--cream); color: #000; }
+  .btn-filled { background: var(--red); border-color: var(--red); color: #fff; }
+  .btn-filled:hover { background: var(--red-dark); }
+
+  @media (max-width: 900px) { .collab-grid { grid-template-columns: 1fr; } }
+
+  /* Footer */
+  .site-footer { padding: 22px 0 32px; color: var(--muted); font-size: 12px; letter-spacing: 1px; border-top: 1px solid var(--line); }
+  .footer-inner { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; align-items: center; max-width: 1280px; margin: 0 auto; padding: 0 20px; }
+  .footer-meta a, .footer-legal a { color: var(--muted); }
+  .footer-meta a:hover, .footer-legal a:hover { color: var(--cream); }
+  .footer-legal a { margin-left: 18px; }
+  .dot { color: var(--line); margin: 0 8px; }
+  @media (max-width: 600px) { .footer-inner { flex-direction: column; align-items: center; text-align: center; } .footer-legal { display: flex; gap: 12px; } .footer-legal a { margin-left: 0; } }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="./index.html" class="brand" aria-label="Izakaya Juraku home"><img src="./img/daruma.png" alt="Izakaya Juraku" style="filter:brightness(1.4) saturate(0.8);" /></a>
+    <button class="nav-toggle" aria-label="Toggle menu" onclick="document.getElementById('nav').classList.toggle('open')">☰</button>
+    <nav id="nav" class="nav">
+      <a href="https://www.toasttab.com/juraku121/menu-and-pay/welcome" target="_blank" rel="noopener">Menu</a>
+      <a href="https://www.toasttab.com/juraku121/rewardsSignup" target="_blank" rel="noopener">Rewards</a>
+      <a href="https://order.toasttab.com/egiftcards/juraku121" target="_blank" rel="noopener">Gift Cards</a>
+      <a href="./about.html">About</a>
+      <a href="./media.html" class="active">Media</a>
+      <a href="https://www.izakayajuraku.com/blog" target="_blank" rel="noopener">Blog</a>
+      <a href="./index.html#contact">Contact</a>
+    </nav>
+    <div class="header-right">
+      <a class="btn-pill" href="https://resy.com/cities/new-york-ny/venues/izakaya-juraku" target="_blank" rel="noopener">Reserve a Table</a>
+    </div>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="wrap">
+    <h1>Media &amp; Press</h1>
+    <p>NYC's izakaya getting love from the community — and looking for creators to tell the story.</p>
+  </div>
+</section>
+
+<section class="media-body">
+  <div class="wrap">
+
+    <!-- Press -->
+    <div class="press-section">
+      <p class="section-label">Community Love</p>
+      <div class="press-card">
+        <p class="press-quote">"Izakaya Juraku is my go-to place to fulfill my cravings for Japanese soul food. Kiyo and team have created a warm, welcoming atmosphere that feels like a home away from home. The food is delicious, the drinks are creative and the vibes are always immaculate."</p>
+        <div class="press-source">
+          <span class="press-source-name">Yelp</span>
+          <a class="press-source-link" href="https://www.yelp.com/biz/izakaya-juraku-new-york" target="_blank" rel="noopener">Read Reviews →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Creator Collab -->
+    <div class="collab-section">
+      <p class="section-label">Creator Collabs</p>
+      <p class="collab-intro">We love working with creators who genuinely vibe with what we're doing. If you want to come in, eat well, and share it with your people — let's make it happen.</p>
+
+      <div class="collab-grid">
+        <div class="collab-card">
+          <div class="collab-card-icon">🍜</div>
+          <h3>Complimentary Dinner</h3>
+          <p>Enjoy a complimentary dinner for 2. Come hungry — we'll take care of the rest.</p>
+        </div>
+        <div class="collab-card">
+          <div class="collab-card-icon">📸</div>
+          <h3>Post + Story</h3>
+          <p>Share a feed post and at least one story tagging <strong style="color:var(--cream)">@izakayajuraku</strong>. That's it.</p>
+        </div>
+        <div class="collab-card">
+          <div class="collab-card-icon">📅</div>
+          <h3>Timing</h3>
+          <p>We're best for visits Tuesday through Sunday. Avoid Fridays, Saturdays, and Mondays — those are our busiest and closed nights.</p>
+        </div>
+      </div>
+
+      <div class="collab-note">
+        <strong>Note:</strong> We keep this low-key. No complicated contracts — just show up, enjoy, and share what you actually feel. We want authentic content, not ads.
+      </div>
+    </div>
+
+    <!-- Contact -->
+    <div class="contact-section">
+      <p class="section-label">Get in Touch</p>
+      <p class="contact-lead">Want to collaborate?</p>
+      <p class="contact-sub">Slide into our DMs or send us an email — we respond to both.</p>
+      <div class="contact-methods">
+        <a class="btn-outline btn-filled" href="https://www.instagram.com/izakayajuraku" target="_blank" rel="noopener">DM @izakayajuraku</a>
+        <a class="btn-outline" href="mailto:hello@izakayajuraku.com">hello@izakayajuraku.com</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-meta">
+      © 2026 Izakaya Juraku
+      <span class="dot">·</span>
+      <a href="https://goo.gl/maps/sLd9QEcxoy22" target="_blank" rel="noopener">121 Ludlow St, New York, NY 10002</a>
+      <span class="dot">·</span>
+      <a href="tel:+12124770100">(212) 477-0100</a>
+      <span class="dot">·</span>
+      <a href="mailto:hello@izakayajuraku.com">hello@izakayajuraku.com</a>
+    </div>
+    <div class="footer-legal">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms &amp; Conditions</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

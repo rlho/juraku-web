@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>About Us &mdash; Izakaya Juraku</title>
+<meta name="description" content="Founded by Kiyo. A place where people feel like they belong. Tokyo-inspired comfort food with NYC energy." />
+<link rel="icon" href="https://s3.amazonaws.com/toasttab/restaurants/restaurant-84007000000000000/restaurant_1632347647.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0a09; --bg-2: #14100e; --line: #2a211c;
+    --red: #d23a36; --red-dark: #a82b27;
+    --cream: #f4ead5; --cream-2: #e8dcc1; --muted: #a89683;
+    --display: "Bangers", "Impact", system-ui, sans-serif;
+    --body: "Inter", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--cream); font-family: var(--body); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; }
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 0 20px; }
+
+  /* Header */
+  .site-header { position: sticky; top: 0; z-index: 50; background: rgba(13,10,9,0.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+  .header-inner { display: flex; align-items: center; gap: 20px; padding: 14px 20px; max-width: 1280px; margin: 0 auto; }
+  .brand { display: inline-flex; align-items: center; flex-shrink: 0; }
+  .brand img { height: 52px; width: auto; }
+  .nav { display: flex; gap: 22px; margin-left: 12px; flex: 1; }
+  .nav a { font-size: 13px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--cream); padding: 8px 0; border-bottom: 2px solid transparent; }
+  .nav a:hover, .nav a.active { border-color: var(--red); }
+  .header-right { display: flex; align-items: center; gap: 16px; }
+  .loc { font-size: 12px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; }
+  .btn-pill { display: inline-block; background: var(--red); color: #fff; font-weight: 700; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; padding: 10px 16px; border-radius: 4px; border: 1px solid #f1a09e; }
+  .btn-pill:hover { background: var(--red-dark); }
+  .nav-toggle { display: none; background: transparent; border: 0; color: var(--cream); font-size: 22px; cursor: pointer; padding: 6px 10px; }
+  @media (max-width: 900px) {
+    .header-inner { flex-wrap: wrap; gap: 10px; padding: 10px 14px; }
+    .nav-toggle { display: block; margin-left: auto; order: 2; }
+    .nav { order: 10; flex-basis: 100%; flex-direction: column; gap: 0; margin-left: 0; max-height: 0; overflow: hidden; transition: max-height 0.25s ease; }
+    .nav.open { max-height: 400px; }
+    .nav a { padding: 12px 0; border-bottom: 1px solid var(--line); }
+    .loc { display: none; }
+    .header-right { gap: 10px; order: 1; margin-left: auto; }
+  }
+
+  /* Page hero */
+  .page-hero {
+    background: linear-gradient(135deg, #1a100d 0%, #0d0a09 60%),
+      radial-gradient(ellipse at 80% 50%, rgba(210,58,54,0.15), transparent 60%);
+    padding: 80px 0 64px;
+    border-bottom: 1px solid var(--line);
+  }
+  .page-hero h1 { font-family: var(--display); font-size: clamp(48px, 7vw, 96px); letter-spacing: 3px; color: var(--cream); margin: 0 0 16px; line-height: 1; }
+  .page-hero p { font-size: 18px; color: var(--muted); max-width: 560px; margin: 0; }
+
+  /* Content */
+  .about-body { padding: 80px 0; }
+  .about-lead {
+    font-family: var(--display);
+    font-size: clamp(28px, 4vw, 48px);
+    letter-spacing: 2px;
+    color: var(--red);
+    margin: 0 0 48px;
+    line-height: 1.1;
+    max-width: 760px;
+  }
+  .about-cols { display: grid; grid-template-columns: 1.2fr 1fr; gap: 64px; align-items: start; margin-bottom: 72px; }
+  .about-cols p { color: var(--muted); font-size: 16px; margin: 0 0 20px; }
+  .about-cols p:last-child { margin: 0; }
+  .founder-label { font-family: var(--display); font-size: 13px; letter-spacing: 3px; color: var(--red); text-transform: uppercase; margin: 0 0 8px; }
+  .founder-name { font-family: var(--display); font-size: 32px; letter-spacing: 2px; color: var(--cream); margin: 0 0 20px; }
+  blockquote.founder-quote {
+    border-left: 3px solid var(--red);
+    margin: 0 0 24px;
+    padding: 16px 24px;
+    background: rgba(210,58,54,0.06);
+    border-radius: 0 6px 6px 0;
+    font-size: 18px;
+    font-style: italic;
+    color: var(--cream-2);
+  }
+  .pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .pillar { background: var(--bg-2); border: 1px solid var(--line); border-radius: 8px; padding: 28px 24px; }
+  .pillar h3 { font-family: var(--display); font-size: 22px; letter-spacing: 2px; color: var(--cream); margin: 0 0 10px; }
+  .pillar p { color: var(--muted); font-size: 14px; margin: 0; }
+
+  .cta-strip { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 48px; }
+  .btn-outline { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--cream); color: var(--cream); font-family: var(--display); font-size: 16px; letter-spacing: 2px; padding: 12px 24px; border-radius: 6px; }
+  .btn-outline:hover { background: var(--cream); color: #000; }
+  .btn-filled { background: var(--red); border-color: var(--red); color: #fff; }
+  .btn-filled:hover { background: var(--red-dark); }
+
+  @media (max-width: 900px) { .about-cols { grid-template-columns: 1fr; gap: 40px; } .pillars { grid-template-columns: 1fr; } }
+
+  /* Footer */
+  .site-footer { padding: 22px 0 32px; color: var(--muted); font-size: 12px; letter-spacing: 1px; border-top: 1px solid var(--line); }
+  .footer-inner { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; align-items: center; max-width: 1280px; margin: 0 auto; padding: 0 20px; }
+  .footer-meta a, .footer-legal a { color: var(--muted); }
+  .footer-meta a:hover, .footer-legal a:hover { color: var(--cream); }
+  .footer-legal a { margin-left: 18px; }
+  .dot { color: var(--line); margin: 0 8px; }
+  @media (max-width: 600px) { .footer-inner { flex-direction: column; align-items: center; text-align: center; } .footer-legal { display: flex; gap: 12px; } .footer-legal a { margin-left: 0; } }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="./index.html" class="brand" aria-label="Izakaya Juraku home"><img src="./img/daruma.png" alt="Izakaya Juraku" style="filter:brightness(1.4) saturate(0.8);" /></a>
+    <button class="nav-toggle" aria-label="Toggle menu" onclick="document.getElementById('nav').classList.toggle('open')">☰</button>
+    <nav id="nav" class="nav">
+      <a href="https://www.toasttab.com/juraku121/menu-and-pay/welcome" target="_blank" rel="noopener">Menu</a>
+      <a href="https://www.toasttab.com/juraku121/rewardsSignup" target="_blank" rel="noopener">Rewards</a>
+      <a href="https://order.toasttab.com/egiftcards/juraku121" target="_blank" rel="noopener">Gift Cards</a>
+      <a href="./about.html" class="active">About</a>
+      <a href="./media.html">Media</a>
+      <a href="https://www.izakayajuraku.com/blog" target="_blank" rel="noopener">Blog</a>
+      <a href="./index.html#contact">Contact</a>
+    </nav>
+    <div class="header-right">
+      <a class="btn-pill" href="https://resy.com/cities/new-york-ny/venues/izakaya-juraku" target="_blank" rel="noopener">Reserve a Table</a>
+    </div>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="wrap">
+    <h1>About Us</h1>
+    <p>Tokyo-inspired comfort food with NYC energy. A place where people feel like they belong.</p>
+  </div>
+</section>
+
+<section class="about-body">
+  <div class="wrap">
+    <p class="about-lead">"I wanted to create a place where people feel like they belong."</p>
+
+    <div class="about-cols">
+      <div>
+        <p class="founder-label">Founded by</p>
+        <p class="founder-name">Kiyo</p>
+        <blockquote class="founder-quote">
+          "I think maybe... it's because I've felt broken for a long time."
+        </blockquote>
+        <p>Izakaya Juraku was built around a simple but powerful idea — everyone deserves a place that feels like home. Kiyo opened Juraku to serve dishes that bring peace and drinks that quiet the mind, creating a genuine community space in the heart of the Lower East Side.</p>
+        <p>More than a restaurant, Juraku is a sanctuary. A place to decompress, connect, and eat something that actually hits right.</p>
+      </div>
+      <div>
+        <p>Japanese craft beers. Original cocktails. Premium sakes. An izakaya menu built around comfort — karaage, yakitori, handrolls, Japanese chicken wings.</p>
+        <p>We serve the kind of food and drinks that make you feel less alone. That's been true since day one, and it'll be true on year ten.</p>
+        <div class="cta-strip">
+          <a class="btn-outline btn-filled" href="https://resy.com/cities/new-york-ny/venues/izakaya-juraku" target="_blank" rel="noopener">🏮 Reserve a Table</a>
+          <a class="btn-outline" href="https://www.toasttab.com/juraku121/menu-and-pay/welcome" target="_blank" rel="noopener">View Menu →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pillars">
+      <div class="pillar">
+        <h3>Bold Flavors</h3>
+        <p>Karaage, yakitori, handrolls, and Japanese chicken wings. Comfort food done right, every night.</p>
+      </div>
+      <div class="pillar">
+        <h3>Drink Experience</h3>
+        <p>Japanese craft beers, sake, whisky, and signature cocktails you won't find anywhere else in NYC.</p>
+      </div>
+      <div class="pillar">
+        <h3>True Izakaya</h3>
+        <p>Community-focused, Japanese décor, entertainment. Dine-in, pickup, or delivery — however you need it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-meta">
+      © 2026 Izakaya Juraku
+      <span class="dot">·</span>
+      <a href="https://goo.gl/maps/sLd9QEcxoy22" target="_blank" rel="noopener">121 Ludlow St, New York, NY 10002</a>
+      <span class="dot">·</span>
+      <a href="tel:+12124770100">(212) 477-0100</a>
+      <span class="dot">·</span>
+      <a href="mailto:hello@izakayajuraku.com">hello@izakayajuraku.com</a>
+    </div>
+    <div class="footer-legal">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms &amp; Conditions</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
